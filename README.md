@@ -77,7 +77,22 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+1. Based on my understanding of Observer design patterns, a single model stuct is enough because Rust's ownership model ensures that data is accessed and modified in a controlled manner, reducing the need for interfaces. However, interfaces can provide a separation of concerns and create more modular and maintainable code.
+
+2. Based on my understanding of Vec and DashMap, DashMap guarantees uniqueness, has a faster retrieval time, enables concurrency and dynamic updates. The additional logic provided for DashMap to ensure these benefits is not provided for Vec. Therefore, DashMap should be implemented instead of Vec.
+
+3. Based on my understanding design patterns, while the Singleton pattern provides a single access point to the SUBSCRIBERS list, ensuring thread safety would require additional complexity and potential performance overhead because of mutex locking or atomic operations. DashMap is designed for concurrent access and handles concurrency internally, making it a better choice for ensuring thread safety. Therefore, we still need DashMap.
 
 #### Reflection Publisher-2
+1. We need to separate "service" and "repository" from a "model" because it allows us to have cleaner code, and reduces future overhead by improving maintainability and testability. This is because it promotes flexibile and reusabile code. Futhermore, Separation of Concerns is a primary design principle.
+
+2. If we only use the "model" without separating concerns into "service" and "repository" layers, it would result in a complex codebase that would be hard to maintain. It would it difficult to adapt the system to changing requirements or to reuse components in different contexts.
+
+3. I have not made the time to further explore Postman. However, my experience with the application made it easier to test https requests from my application. I intend to use it in my workflow for future projects.
 
 #### Reflection Publisher-3
+1. The push model is used as the observer pattern, where the NotificationService acts as the publisher pushing notification data to subscribers without requiring them to actively request it. This simplifies the implementation and allows for easy communication between the publisher and subscribers.
+
+2. The pros and cons of using the other variation of observer pattern for this tutorial would be as follows. Using the pull model variation, subscribers could have more control over when they receive updates and fetch data. Furthermore, pulling updates only when necessary would reduce network traffic. However, the pull model could introduce overhead, latency, and increased coupling between subscribers and publishers.
+
+3. By not using multi-threading in the notification process, it can result in blocking behavior, decreased performance, reduced responsiveness, limited concurrency, scalability challenges, and potential synchronization issues. Multi-threading is important for improving performance, concurrency, and responsiveness in applications that involve asynchronous tasks, for example, sending notifications to subscribers in real-time systems.
